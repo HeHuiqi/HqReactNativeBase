@@ -9,7 +9,7 @@ export default  class HqDetailScreen extends Component{
 
     static  navigationOptions = ({navigation}) => {
         return {
-            title:'设置',
+            title:'我的',
             headerBackTitle:null,
             headerRight:<Button title={'+1'} onPress={
                 //这里获取设置的事件将会执行

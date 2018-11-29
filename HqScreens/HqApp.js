@@ -1,11 +1,15 @@
 
 import React,{Component} from 'react';
+import  {
+    Image,
+    StyleSheet,
+} from 'react-native'
 
 //导入stack导航组件
 import { createStackNavigator,createAppContainer,createBottomTabNavigator } from 'react-navigation';
 import HqHomeScreen from './HqHomeScreen';
 import HqDetailScreen from './HqDetailScreen';
-import HqSettingScreen from  './HqSettingScreen';
+import HqMyScreen from './HqMyScreen';
 
 // //进行导航的注册
 
@@ -25,8 +29,10 @@ Home.navigationOptions = ({ navigation }) => {
         tabBarVisible,
     };
 };
-const HqSet = createStackNavigator({
-    HqSet: { screen: HqSettingScreen },
+const HqMy = createStackNavigator({
+    HqMy: {
+        screen: HqMyScreen,
+    },
 });
 const TabNavigator = createBottomTabNavigator(
     {
@@ -36,23 +42,46 @@ const TabNavigator = createBottomTabNavigator(
                 headerTitle: "首页",
                 tabBarLabel: "首页",
                 headerBackTitle: null,
-                tabBarIcon: null,
+                tabBarIcon: ({focused,tintColor})=>{
+                    if (focused){
+
+                        return (
+                            <Image style={[styles.tabBarIcon,{tintColor:tintColor}]} source={require('../assets/tabbar_discoverHL.png')}/>
+                        );
+                    }else {
+                        return (
+                            <Image style={[styles.tabBarIcon,{tintColor:tintColor}]} source={require('../assets/tabbar_discover.png')}/>
+
+                        );
+                    }
+                },
 
             }),
         },
-        HqSet: {
-            screen:HqSet,
-            navigationOptions: ({ navigation }) => ({
-                headerTitle: "设置",
-                tabBarLabel: "设置",
+        HqMy: {
+            screen:HqMy,
+            navigationOptions: ({ navigation}) => ({
+                tabBarLabel: "我的",
                 headerBackTitle: null,
-                tabBarIcon: null,
+                tabBarIcon: ({focused,tintColor})=>{
+                    if (focused){
+                        return (
+                            <Image style={[styles.tabBarIcon,{tintColor:tintColor}]} source={require('../assets/tabbar_contactsHL.png')}/>
+                        );
+                    }else {
+                        // alert('321');
+                        return (
+                            <Image style={[styles.tabBarIcon,{tintColor:tintColor}]} source={require('../assets/tabbar_contacts.png')}/>
+
+                        );
+                    }
+                }
             }),
         }
     },
     {
         tabBarOptions: {
-            activeTintColor: 'tomato',
+            activeTintColor: 'green',
             inactiveTintColor: 'gray',
         },
 
@@ -69,3 +98,12 @@ export default class HqApp extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create(
+    {
+        tabBarIcon: {
+            width: 21, height: 21,
+
+        }
+    }
+);

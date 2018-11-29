@@ -11,6 +11,7 @@ import HqListView from '../HqComponents/HqListView'
 export default  class HqHomeScreen extends Component{
     static navigationOptions = {
         title:'首页'
+
     };
     next(params){
         this.props.navigation.navigate('Detail',params);
