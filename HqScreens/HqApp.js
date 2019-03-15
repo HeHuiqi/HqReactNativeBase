@@ -83,7 +83,14 @@ const TabNavigator = createBottomTabNavigator(
         tabBarOptions: {
             activeTintColor: 'green',
             inactiveTintColor: 'gray',
+            labelStyle: {
+                fontSize: 15, // 文字大小
+            },
+
         },
+        tabBarPosition:'bottom',
+        swipeEnabled:true,
+        animationEnabled:true,
 
 
 
